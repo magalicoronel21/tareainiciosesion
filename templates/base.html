@@ -1,18 +1,25 @@
 {% load static %}
-
 <html>
-
   <head>
     <meta charset="utf-8">
-    <title>Task</title>
+    <title>Tasks</title>
     <link rel="stylesheet" href="{% static 'tasks/css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}">
   </head>
-
   <body>
     <nav>
       <ul>
-        <li><a href="{% url 'tasks:index' %}">Lista de Tareas</a></li> 
+        <!-- Aquí comienza -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'tasks:index' %}">Lista de tareas</a></li>
+        <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        <li><a href="{% url 'user_detail' user.pk %}">Información del usuario</a></li>
+        <!-- Añadido -->
+        {% else %}
+        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        <li><a href="{% url 'signup' %}">Registro</a></li>
+        {% endif %}
+        <!-- Aquí termina -->
       </ul>
     </nav>
     <main>
@@ -22,5 +29,4 @@
       </div>
     </main>
   </body>
-
 </html>

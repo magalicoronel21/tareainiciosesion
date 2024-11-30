@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block main %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Actualizar">
+</form>
+<a href="{% url 'user_detail' user.id %}">Volver</a>
+<a href="{% url 'user_delete' user.id %}">Eliminar cuenta</a>
+{% endblock %}
